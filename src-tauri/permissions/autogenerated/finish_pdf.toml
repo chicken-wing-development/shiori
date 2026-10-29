@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-finish-pdf"
+description = "Enables the finish_pdf command without any pre-configured scope."
+commands.allow = ["finish_pdf"]
+
+[[permission]]
+identifier = "deny-finish-pdf"
+description = "Denies the finish_pdf command without any pre-configured scope."
+commands.deny = ["finish_pdf"]

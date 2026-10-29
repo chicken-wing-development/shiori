@@ -1,0 +1,5 @@
+{
+  "identifier": "jp.shiori.markdown.security-tests",
+  "build": { "beforeDevCommand": "", "devUrl": "http://127.0.0.1:1420" },
+  "app": { "windows": [{ "label": "main", "title": "shiori export security tests", "url": "http://127.0.0.1:1420/tests/native-security.html", "width": 1150, "height": 850 }] }
+}

@@ -1,0 +1,15 @@
+import fs from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+const root = new URL('../', import.meta.url);
+await fs.mkdir(new URL('.sites-runtime/', root), { recursive: true });
+const html = await fs.readFile(new URL('portable/shiori.html', root), 'utf8');
+const png = (await fs.readFile(new URL('public/icons/icon-192.png', root))).toString('base64');
+const script = (await fs.readFile(new URL('tests/portable.browser.js', root), 'utf8')).replace('__PNG_BASE64__', png).replace(/<\/script/gi, '<\\/script');
+const hash = createHash('sha256').update(script).digest('base64');
+const panel = '<aside style="position:fixed;right:12px;bottom:36px;z-index:30;background:var(--bg);border:1px solid var(--line);padding:12px;max-width:470px;font-size:11px"><button id="run-portable">単一HTMLを確認</button><button id="reload-portable" hidden>再読み込み後を確認</button><pre id="portable-result" role="status" style="max-height:160px;overflow:auto"></pre></aside>';
+const end = html.lastIndexOf('</body>');
+if (end < 0) throw new Error('Portable document has no closing body.');
+const testHtml = (html.slice(0, end) + `${panel}<script type="module">${script}</script>` + html.slice(end)).replace("script-src ", `script-src 'sha256-${hash}' `);
+await fs.writeFile(new URL('.sites-runtime/portable-tests.html', root), testHtml);
+await fs.writeFile(new URL('.sites-runtime/portable-temporary-tests.html', root), `<!doctype html><html><meta charset="utf-8"><title>保存領域が使えない環境の確認</title><h1>保存領域が使えない環境の確認</h1><pre id="temporary-result">確認中</pre><iframe id="temporary-app" sandbox="allow-scripts" src="/tests.html?temporary=1" style="width:100%;height:760px;border:0"></iframe><script>document.addEventListener('DOMContentLoaded',()=>window.addEventListener('message',event=>{if(event.source===document.querySelector('#temporary-app').contentWindow&&event.data?.kind==='shiori-portable-temporary')document.querySelector('#temporary-result').textContent=JSON.stringify(event.data.result,null,2)}))</script></html>`);
+console.log('Prepared HTTP-only portable tests and blocked-storage sandbox fixture.');

@@ -1,0 +1,25 @@
+node_modules/
+dist/
+dist-desktop/
+src-tauri/target/
+src-tauri/gen/schemas/
+.store-build/
+.tools/
+playwright-report/
+*.pfx
+*.p12
+store/store-identity.json
+portable/
+releases/
+.sites-runtime/
+.sites-checkout/
+*.tar.gz
+*.log
+test-results/
+.DS_Store
+
+# Local working copies and environment-specific settings
+.task-backups/
+.env
+.env.*
+!.env.example

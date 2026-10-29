@@ -1,0 +1,24 @@
+Product: shiori markdown editor 1.0.0
+Publisher: テバ開発
+Windows desktop app; Windows 11 build 22000 or later; x64 and ARM64.
+Microsoft Edge WebView2 Evergreen Runtime is required. The app uses the installed runtime. No account, license key, subscription, or payment is required.
+UI language: Japanese.
+
+runFullTrust justification:
+This is a Rust/Tauri desktop Markdown editor. It needs the full-trust desktop process to show native open/save dialogs, read the Markdown file and related local images selected by the user, write user-selected Markdown/HTML/PDF output files, and generate PDF using WebView2. It does not require administrator rights, install services or drivers, or install an independent updater. Updates are distributed through Microsoft Store.
+
+Suggested review steps:
+1. Launch the app. Select Markdown in the upper-left mode switch. Enter a heading and text, or use 開く (Open) to open the supplied sample/reading-notes.md file.
+2. Check the live preview. The sample includes a Mermaid flowchart. 閲覧 is Reading mode and WYSIWYG is rich-text editing mode. Use the left outline to jump to a heading. Drag its right border to resize it.
+3. 保存 (Save) writes a normal Markdown file; it preserves Mermaid source and image references. A draft is also stored locally for restoration.
+4. その他 (More) -> HTMLにエクスポート exports one self-contained HTML file with embedded images and Mermaid SVG. PDFにエクスポート writes an A4 PDF. Choose an output name and press エクスポート, then choose a location in the native save dialog.
+5. Close and relaunch to check local draft restoration. The original file is updated only through Save.
+6. Select the version button in the bottom-right corner for copyright and app information. The プライバシー tab contains the privacy notice; the 使い方 tab contains help. F1 opens help.
+
+Privacy and network behavior:
+No developer-operated account, cloud sync, analytics, advertising, or document upload service is implemented. Drafts, imported images and settings are stored locally. External images are disabled in preview by default; enabling them requests the image host. Windows HTML/PDF export fetches external images regardless of the preview toggle. The export fetcher rejects local/private/special-use IP destinations and does not use cookies, credentials, referrers, proxies or redirects. User-selected external links open the system browser/mail app. Mermaid rendering is isolated and has no network access. Microsoft Store and WebView2 may perform their own communication.
+
+Limits:
+Markdown: 2 MiB UTF-8; image: 8 MiB each / 32 MiB total / 100 images; Mermaid: 30 diagrams; HTML: 64 MiB; PDF: 128 MiB. Missing/corrupt images or invalid Mermaid syntax cancel export instead of producing an incomplete file.
+
+The current submission is a desktop application, not a game. It includes no purchases, advertising, built-in chat, social network or user-to-user content service. User documents remain under user control. Complete the IARC questionnaire using the actual questions; a rating has not been pre-assigned by the developer.

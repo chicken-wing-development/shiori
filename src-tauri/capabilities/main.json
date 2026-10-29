@@ -1,0 +1,22 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-window",
+  "description": "Local editor: save only to user-selected files and open web links in the browser.",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-destroy",
+    "dialog:allow-message",
+    "allow-begin-export",
+    "allow-finish-export",
+    "allow-finish-pdf",
+    "allow-fetch-export-image",
+    "allow-cancel-export",
+    "allow-open-document",
+    "allow-read-document-image",
+    "allow-close-document",
+    "allow-remember-document",
+    "allow-resume-document",
+    { "identifier": "opener:allow-open-url", "allow": [{ "url": "https://*" }, { "url": "http://*" }, { "url": "mailto:*" }] }
+  ]
+}

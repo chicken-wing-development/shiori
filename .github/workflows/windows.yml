@@ -1,0 +1,44 @@
+name: Windows desktop
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore: ['docs/**', '**.md']
+  pull_request:
+    paths-ignore: ['docs/**', '**.md']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [x86_64-pc-windows-msvc, aarch64-pc-windows-msvc]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: pnpm
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm audit
+      - run: pnpm test
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml --lib
+      - if: matrix.target == 'x86_64-pc-windows-msvc'
+        run: cargo install cargo-audit --locked --version 0.22.2
+      - if: matrix.target == 'x86_64-pc-windows-msvc'
+        run: cargo audit --file src-tauri/Cargo.lock --target-os windows
+      - run: pnpm test:browser
+      - run: pnpm test:desktop
+      - run: pnpm desktop:build --target ${{ matrix.target }} -- --locked
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shiori-${{ matrix.target }}
+          path: |
+            src-tauri/target/${{ matrix.target }}/release/shiori-markdown.exe
+            dist-desktop/THIRD-PARTY-LICENSES.md
+            dist-desktop/DIAGRAM-LICENSES.md

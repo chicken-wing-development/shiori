@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-read-document-image"
+description = "Enables the read_document_image command without any pre-configured scope."
+commands.allow = ["read_document_image"]
+
+[[permission]]
+identifier = "deny-read-document-image"
+description = "Denies the read_document_image command without any pre-configured scope."
+commands.deny = ["read_document_image"]

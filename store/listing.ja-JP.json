@@ -1,0 +1,32 @@
+{
+  "productName": "shiori markdown editor",
+  "language": "ja-JP",
+  "price": "Free",
+  "markets": null,
+  "category": "Productivity",
+  "shortDescription": "ひとつの文書に、集中する。MarkdownとMermaidを編集し、画像や図を含むHTML・PDFで共有できるエディタ。",
+  "description": "shiori markdown editorは、ひとつのMarkdown文書を読む・書くためのエディタです。ファイル一覧を管理する画面を設けず、本文と見出しに集中できる構成にしました。\n\nMarkdownの記法を直接編集するモード、書式を見ながら編集するWYSIWYGモード、閲覧モードを切り替えられます。左側の見出しから本文の目的の位置へ移動でき、見出しペインの幅も調整できます。\n\nMermaidのフローチャートなどをプレビューできます。文書と同じフォルダー配下の画像は相対パスで読み込めます。Markdownの保存では、画像への参照やMermaidの記法をそのまま残します。\n\n共有するときは、画像とMermaidから生成した図を含む単一のHTMLファイル、またはA4のPDFにエクスポートできます。HTMLは出力後にオフラインで開けます。\n\n編集中の文書と表示設定をデバイス内に保持し、次回起動時に復元します。元のMarkdownファイルへの反映には「保存」を使用します。文書のクラウド同期、広告、アクセス解析、アカウント登録はありません。無料で利用できます。\n\n外部URLの画像を表示するときや、外部画像を含むHTML・PDFを出力するときは通信が発生します。外部画像の表示は初期状態ではOFFです。エクスポート時は表示設定にかかわらず外部画像を取得します。端末内や内部ネットワークのURLはエクスポートでは使用できません。\n\n対応環境：Windows 11以降、x64またはARM64、Microsoft Edge WebView2 Runtime。画面表示は日本語です。\nMarkdown文書はUTF-8で2 MBまで、参照画像は1枚8 MB・合計32 MBまでに対応します。",
+  "features": [
+    "単一のMarkdown文書に集中できる編集画面",
+    "Markdown・WYSIWYG・閲覧の3モード",
+    "Mermaidの図をプレビュー",
+    "相対パスの画像を表示",
+    "画像と図を埋め込んだ単一HTMLへエクスポート",
+    "画像と図を含むA4 PDFへエクスポート",
+    "幅を調整できる見出しペインと文書内検索",
+    "下書きの自動復元、ライト・ダーク表示"
+  ],
+  "whatsNew": "",
+  "searchTerms": ["Markdown", "Mermaid", "エディタ", "メモ", "PDF", "HTML", "しおり"],
+  "minimumRequirements": ["Windows 11 バージョン21H2（ビルド22000）以降", "x64 または ARM64", "Microsoft Edge WebView2 Runtime"],
+  "copyright": "Copyright © 2026 テバ開発",
+  "website": null,
+  "supportContact": null,
+  "privacyPolicyFile": "privacy.txt",
+  "screenshots": [
+    {"file": "01-markdown.png", "caption": "Markdownを編集しながら、文章とMermaidの図をプレビュー。"},
+    {"file": "02-reading.png", "caption": "見出しから移動し、本文と図を広い画面で読む。"},
+    {"file": "03-wysiwyg.png", "caption": "書式を見ながら文章を編集できるWYSIWYGモード。"},
+    {"file": "04-dark.png", "caption": "ダーク表示でも、見出しと文書を見やすく。"}
+  ]
+}

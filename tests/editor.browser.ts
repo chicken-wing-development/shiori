@@ -1,0 +1,12 @@
+Object.assign(window, { showSaveFilePicker: async () => ({ createWritable: async () => ({ write: async (blob: Blob) => { document.querySelector('#editor-test-export')!.textContent = await blob.text(); }, close: async () => {} }) }) });
+await import('../src/main');
+const source = '# プロジェクトノート\n\n考えをまとめて、**伝わる文章**に。\n\n## 今日のタスク\n\n- [ ] 文章を書く\n- [x] 構成を考える\n\n## 作業の流れ\n\n```mermaid\nflowchart LR\n A[アイデア] --> B[編集]\n B --> C[共有]\n```\n\n![図](./img/1.png)\n\n[参考資料](./reference.md)\n';
+const fileInput = document.querySelector<HTMLInputElement>('#file-input')!;
+const transfer = new DataTransfer(); transfer.items.add(new File([source], '1.md', { type: 'text/markdown' })); fileInput.files = transfer.files; fileInput.dispatchEvent(new Event('change'));
+while (document.querySelector('#document-name')?.textContent !== '1.md') await new Promise(resolve => setTimeout(resolve, 10));
+const png = await (await fetch('/icons/icon-192.png')).blob();
+const file = new File([png], '1.png', { type: 'image/png' }); Object.defineProperty(file, 'webkitRelativePath', { value: 'project/img/1.png' });
+const imageFiles = new DataTransfer(); imageFiles.items.add(file); const input = document.querySelector<HTMLInputElement>('#folder-input')!; input.files = imageFiles.files; input.dispatchEvent(new Event('change'));
+document.querySelector<HTMLButtonElement>('#preview-tab')!.click();
+document.querySelector('#editor-test-ready')!.textContent = 'fixture ready';
+export {};
